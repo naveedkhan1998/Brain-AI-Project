@@ -1,0 +1,51 @@
+{% load static tailwind_tags %}
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+      {% block title %}
+        Brain Inspired AI
+      {% endblock %}
+    </title>
+    {% load static %}
+    {% tailwind_css %}
+  </head>
+  <body class="font-sans leading-normal tracking-normal bg-slate-100">
+    <nav class="fixed top-0 left-0 w-full z-50 bg-slate-300 shadow-lg rounded-b-lg px-4 py-3 flex justify-between items-center">
+      <a class="text-slate-800 text-2xl font-bold" href="{% url 'home' %}">Brain AI</a>
+      <div class="md:hidden">
+        <button id="menu-toggle" class="text-slate-800 focus:outline-none">
+          <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+          </svg>
+        </button>
+      </div>
+      <div id="navbar-collapse" class="hidden md:flex items-center space-x-4">
+        <a class="py-2 px-4 text-slate-800 hover:text-slate-600 rounded-md" href="{% url 'home' %}">Home</a>
+        <a class="py-2 px-4 text-slate-800 hover:text-slate-600 rounded-md" href="{% url 'video_page' %}">Video</a>
+        <a class="py-2 px-4 text-slate-800 hover:text-slate-600 rounded-md" href="{% url 'about_us' %}">About</a>
+        <a class="py-2 px-4 text-slate-800 hover:text-slate-600 rounded-md" href="{% url 'contact' %}">Contact</a>
+      </div>
+    </nav>
+
+    <main class="container mx-auto px-4 py-16 min-h-screen">
+      {% block content %}
+        {% load static %}
+      {% endblock %}
+    </main>
+
+    <footer class="fixed bottom-0 left-0 w-full z-50 bg-slate-300 shadow-lg rounded-t-lg px-4 py-3 flex justify-center items-center text-slate-600">
+      <p>&copy; 2024 Brain Inspired AI. All rights reserved.</p>
+    </footer>
+
+    <script>
+      document.getElementById('menu-toggle').addEventListener('click', function () {
+        document.getElementById('navbar-collapse').classList.toggle('hidden')
+      })
+    </script>
+    <script src="{% static 'main/scripts/main.js' %}"></script>
+  </body>
+</html>
