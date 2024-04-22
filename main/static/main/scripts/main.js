@@ -5,8 +5,8 @@ const ws_scheme = window.location.protocol == "https:" ? "wss" : "ws";
 const uuid = generateUUID();
 let mode = true;
 
-video.width = 640;
-video.height = 360;
+/* video.width = 640;
+video.height = 360; */
 
 // generate a uuid for each client so that they can establish their own websocket connection
 function generateUUID() {
@@ -54,21 +54,32 @@ function Mode() {
         .then(function (stream) {
           video.srcObject = stream;
           video.play();
-          const width = video.width;
-          const height = video.height;
-          const delay = 100;
+          const track = stream.getVideoTracks()[0];
+          const { width, height } = track.getSettings();
+
+          video.width = width;
+          video.height = height;
+
+          canvas.width = width;
+          canvas.height = height;
+
+          const delay = 50;
 
           setInterval(function () {
             context.drawImage(video, 0, 0, width, height);
-            canvas.toBlob(function (blob) {
-              if (ws.readyState == WebSocket.OPEN) {
-                if (mode) {
-                  ws.send(new Uint8Array([]));
-                } else {
-                  ws.send(blob);
+            canvas.toBlob(
+              function (blob) {
+                if (ws.readyState == WebSocket.OPEN) {
+                  if (mode) {
+                    ws.send(new Uint8Array([]));
+                  } else {
+                    ws.send(blob);
+                  }
                 }
-              }
-            }, "image/jpeg");
+              },
+              "image/jpeg",
+              0.2
+            );
           }, delay);
         });
     }

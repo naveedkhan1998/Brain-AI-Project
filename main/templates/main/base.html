@@ -13,31 +13,31 @@
     {% load static %}
     {% tailwind_css %}
   </head>
-  <body class="font-sans leading-normal tracking-normal bg-slate-100">
-    <nav class="fixed top-0 left-0 w-full z-50 bg-slate-300 shadow-lg rounded-b-lg px-4 py-3 flex justify-between items-center">
-      <a class="text-slate-800 text-2xl font-bold" href="{% url 'home' %}">Brain AI</a>
+  <body class="font-sans leading-normal tracking-normal bg-slate-100 ">
+    <nav class="fixed top-0 left-0 z-50 flex items-center justify-between w-full px-4 py-3 rounded-b-lg shadow-lg bg-slate-300">
+      <a class="text-2xl font-bold text-slate-800" href="{% url 'home' %}">Brain AI</a>
       <div class="md:hidden">
         <button id="menu-toggle" class="text-slate-800 focus:outline-none">
-          <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
           </svg>
         </button>
       </div>
-      <div id="navbar-collapse" class="hidden md:flex items-center space-x-4">
-        <a class="py-2 px-4 text-slate-800 hover:text-slate-600 rounded-md" href="{% url 'home' %}">Home</a>
-        <a class="py-2 px-4 text-slate-800 hover:text-slate-600 rounded-md" href="{% url 'video_page' %}">Video</a>
-        <a class="py-2 px-4 text-slate-800 hover:text-slate-600 rounded-md" href="{% url 'about_us' %}">About</a>
-        <a class="py-2 px-4 text-slate-800 hover:text-slate-600 rounded-md" href="{% url 'contact' %}">Contact</a>
+      <div id="navbar-collapse" class="items-center hidden space-x-4 md:flex">
+        <a class="px-4 py-2 rounded-md text-slate-800 hover:text-slate-600" href="{% url 'home' %}">Home</a>
+        <a class="px-4 py-2 rounded-md text-slate-800 hover:text-slate-600" href="{% url 'video_page' %}">Video</a>
+        <a class="px-4 py-2 rounded-md text-slate-800 hover:text-slate-600" href="{% url 'about_us' %}">About</a>
+        <a class="px-4 py-2 rounded-md text-slate-800 hover:text-slate-600" href="{% url 'contact' %}">Contact</a>
       </div>
     </nav>
 
-    <main class="container mx-auto px-4 py-16 min-h-screen">
+    <main class="container min-h-screen px-4 py-16 mx-auto">
       {% block content %}
         {% load static %}
       {% endblock %}
     </main>
 
-    <footer class="fixed bottom-0 left-0 w-full z-50 bg-slate-300 shadow-lg rounded-t-lg px-4 py-3 flex justify-center items-center text-slate-600">
+    <footer class="fixed bottom-0 left-0 z-50 flex items-center justify-center w-full px-4 py-3 rounded-t-lg shadow-lg bg-slate-300 text-slate-600">
       <p>&copy; 2024 Brain Inspired AI. All rights reserved.</p>
     </footer>
 
